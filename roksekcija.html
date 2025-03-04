@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RockFest - Rok festival u crno-žutim bojama</title>
+  <meta name="description" content="Najuzbudljiviji rok festival godine sa najboljim bendovima i neverovatnom atmosferom">
+  <meta name="author" content="RockFest">
+  
+  <!-- Fontovi -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap">
+  
+  <style>
+    /* 
+      ROCKFEST - Osnovni stilovi 
+      Crno-žuta tema za rok festival
+    */
+
+    /* ======= Osnovni reset i varijable ======= */
+    :root {
+      --primary: #ffd500;
+      --primary-light: rgba(255, 213, 0, 0.2);
+      --secondary: rgba(255, 213, 0, 0.5);
+      --background: #f9f8f4;
+      --foreground: #100f0f;
+      --white: #ffffff;
+      --black: #000000;
+      --gray-100: #f5f5f5;
+      --gray-300: #d4d4d4;
+      --gray-500: #737373;
+      --gray-700: #404040;
+      --gray-900: #171717;
+      --radius: 8px;
+      --transition: all 0.3s ease;
+    }
+
+    /* Globalni reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px; /* Kompenzacija za fiksni navbar */
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: var(--foreground);
+      background-color: var(--background);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Bebas Neue', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 400;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .text-primary {
+      color: var(--primary);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .bg-secondary {
+      background-color: var(--secondary);
+    }
+
+    .bg-primary-light {
+      background-color: var(--primary-light);
+    }
+
+    /* ======= Zaglavlje (Navbar) ======= */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 16px 0;
+      transition: var(--transition);
+      background-color: transparent;
+    }
+
+    .navbar.scrolled {
+      background-color: rgba(0, 0, 0, 0.9);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 1px;
+      color: var(--white);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .nav-link {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      text-transform: uppercase;
+      color: var(--white);
+      letter-spacing: 1px;
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--primary);
+    }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+    }
+
+    .bar {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px auto;
+      transition: var(--transition);
+      background-color: var(--white);
+    }
+
+    /* ======= Hero Sekcija ======= */
+    .hero {
+      height: 100vh;
+      min-height: 600px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      background-image: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 5rem;
+      line-height: 1;
+      margin-bottom: 16px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 32px;
+      font-family: 'Oswald', sans-serif;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-dates {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 32px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+    }
+
+    .date-primary {
+      background-color: var(--primary);
+      color: var(--black);
+      padding: 4px 16px;
+    }
+
+    .date-secondary {
+      border: 2px solid var(--white);
+      padding: 4px 16px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--white);
+      z-index: 2;
+      animation: bounce 2s infinite;
+    }
+
+    .scroll-indicator span {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+      }
+      40% {
+        transform: translateY(-20px) translateX(-50%);
+      }
+      60% {
+        transform: translateY(-10px) translateX(-50%);
+      }
+    }
+
+    /* Fade-in animacija */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 1s forwards;
+      animation-delay: 0.3s;
+    }
+
+    .fade-in:nth-child(2) {
+      animation-delay: 0.6s;
+    }
+
+    .fade-in:nth-child(3) {
+      animation-delay: 0.9s;
+    }
+
+    .fade-in:nth-child(4) {
+      animation-delay: 1.2s;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ======= Dugmad ======= */
+    .btn-primary, .btn-secondary {
+      display: inline-block;
+      padding: 12px 24px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--black);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary:hover {
+      background-color: #e6c200; /* Tamnija varijanta primary boje */
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--primary);
+      color: var(--black);
+      transform: translateY(-2px);
+    }
+
+    /* ======= Sekcija zaglavlja ======= */
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+
+    .section-header p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      color: var(--gray-700);
+    }
+
+    .section-footer {
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    /* ======= Lineup Sekcija ======= */
+    .lineup-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 32px;
+    }
+
+    .lineup-card {
+      background-color: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: var(--transition);
+      border: 2px solid transparent;
+    }
+
+    .lineup-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 16px rgba(0, 0, 0, 0.1);
+      border-color: var(--primary);
+    }
+
+    .card-image {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+
+    .lineup-card:hover .card-image img {
+      transform: scale(1.05);
+    }
+
+    .card-content {
+      padding: 24px;
+    }
+
+    .card-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .card-details {
+      margin-bottom: 16px;
+      font-size: 0.9rem;
+      color: var(--gray-700);
+    }
+
+    .card-details div {
+      margin-bottom: 4px;
+    }
+
+    .card-details span {
+      font-weight: 600;
+      margin-right: 4px;
+    }
+
+    .card-link {
+      color: var(--primary);
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    .card-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ======= Iskustva (Testimonials) Sekcija ======= */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 32px;
+    }
+
+    .testimonial-card {
+      background-color: var(--white);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .testimonial-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-image {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 16px;
+    }
+
+    .testimonial-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .testimonial-author h3 {
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+
+    .testimonial-author p {
+      font-size: 0.8rem;
+      color: var(--gray-600);
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      color: var(--gray-700);
+    }
+
+    /* ======= Galerija Sekcija ======= */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 16px;
+    }
+
+    .gallery-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      height: 200px;
+      cursor: pointer;
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0);
+      transition: var(--transition);
+      z-index: 1;
+    }
+
+    .gallery-item:hover::after {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 30px;
+      color: var(--white);
+      cursor: pointer;
+      z-index: 2001;
+    }
+
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
+
+    /* ======= O nama Sekcija ======= */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 60px;
+    }
+
+    .about-text h3 {
+      font-size: 2rem;
+      margin-bottom: 24px;
+    }
+
+    .about-text p {
+      margin-bottom: 16px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .stat-card {
+      background-color: var(--white);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .stat-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .about-location h3 {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .map-container {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      height: 400px;
+    }
+
+    /* ======= Kontakt Sekcija ======= */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+
+    .contact-form h3, .contact-info h3 {
+      font-size: 2rem;
+      margin-bottom: 24px;
+    }
+
+    .form-status {
+      padding: 16px;
+      margin-bottom: 24px;
+      border-radius: var(--radius);
+      display: none;
+    }
+
+    .form-status.success {
+      display: block;
+      background-color: #d1fae5;
+      color: #065f46;
+    }
+
+    .form-status.error {
+      display: block;
+      background-color: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius);
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      background-color: var(--white);
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(255, 213, 0, 0.2);
+    }
+
+    .info-block {
+      margin-bottom: 24px;
+    }
+
+    .info-block h4 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 16px;
+    }
+
+    .social-icon {
+      color: var(--gray-700);
+      transition: var(--transition);
+    }
+
+    .social-icon:hover {
+      color: var(--primary);
+    }
+
+    .working-hours {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .working-hours div {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ======= Footer ======= */
+    .footer {
+      background-color: var(--black);
+      color: var(--white);
+      padding: 60px 0 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-info {
+      grid-column: span 1;
+    }
+
+    .footer-logo {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .footer-info p {
+      color: var(--gray-500);
+      margin-bottom: 16px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-social .social-icon {
+      color: var(--gray-500);
+    }
+
+    .footer-social .social-icon:hover {
+      color: var(--primary);
+    }
+
+    .footer-links h4, .footer-contact h4 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .footer-links ul {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      color: var(--gray-500);
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    .footer-contact address {
+      font-style: normal;
+      color: var(--gray-500);
+      line-height: 1.8;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--gray-900);
+      padding-top: 20px;
+      text-align: center;
+    }
+
+    .footer-bottom p {
+      color: var(--gray-500);
+      font-size: 0.9rem;
+    }
+
+    /* Animacije za sekcije */
+    .section-appear {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .section-appear.appear {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ======= Responzivnost ======= */
+    @media (max-width: 1024px) {
+      .hero h1 {
+        font-size: 4rem;
+      }
+      
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+      
+      .about-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+      
+      .hamburger {
+        display: block;
+      }
+      
+      .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+      
+      .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      
+      .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+      
+      .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        left: 0;
+        top: 70px;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        padding: 20px;
+        z-index: 999;
+        text-align: center;
+      }
+      
+      .section-header h2 {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero h1 {
+        font-size: 3rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .hero-buttons {
+        flex-direction: column;
+      }
+      
+      .section {
+        padding: 60px 0;
+      }
+      
+      .section-header h2 {
+        font-size: 2rem;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+  <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+</head>
+<body>
+  <!-- Navigacija -->
+  <header class="navbar" id="navbar">
+    <div class="navbar-container">
+      <div class="logo">
+        <a href="#nastupi"><span class="text-primary">ROCK</span>STRIKCIJA</a>
+      </div>
+      
+      <nav class="nav-links">
+        <a href="#nastupi" class="nav-link active">Nastupi</a>
+        <a href="#iskustva" class="nav-link">Iskustva</a>
+        <a href="#galerija" class="nav-link">Galerija</a>
+        <a href="#o-nama" class="nav-link">O nama</a>
+        <a href="#kontakt" class="nav-link">Kontakt</a>
+      </nav>
+      
+      <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero sekcija -->
+  <section class="hero" id="nastupi">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1 class="fade-in"><span class="text-primary">ROCK</span> STRIKCIJA 2025</h1>
+      <p class="fade-in">Najuzbudljiviji rok festival godine sa najboljim bendovima i nevjerovatnom energiom</p>
+      <div class="hero-dates fade-in">
+        <span class="date-primary">10-15 JUNA</span>
+        <span class="date-secondary">PODGORICA, CRNA GORA</span>
+      </div>
+      <div class="hero-buttons fade-in">
+        <a href="#karte" class="btn-primary">KUPI KARTU</a>
+        <a href="#lineup" class="btn-secondary">POGLEDAJ LINEUP</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>SKROLUJ DOLjE</span>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Lineup sekcija -->
+  <section class="section" id="lineup">
+    <div class="container">
+      <div class="section-header">
+        <h2><span class="text-primary">LINEUP</span> 2025godine</h2>
+        <p>Pogledajte raspored nastupa najvećih rok zvijezda na  ROCK-STRIKCIJA festu 2025</p>
+      </div>
+      
+      <div class="lineup-grid">
+        <div class="lineup-card">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1504624720567-64a41aa25d70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Dark Ravens">
+          </div>
+          <div class="card-content">
+            <h3>bozovic masa</h3>
+            <div class="card-details">
+              <div><span>Datum:</span> 15. Avgust</div>
+              <div><span>Vreme:</span> 21:00 - 23:00</div>
+              <div><span>Bina:</span> Glavna bina</div>
+            </div>
+            <a href="#" class="card-link">Više informacija</a>
+          </div>
+        </div>
+        
+        <div class="lineup-card">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1471478331149-c72f17e33c73?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Metal Fury">
+          </div>
+          <div class="card-content">
+            <h3>cuca  Fury</h3>
+            <div class="card-details">
+              <div><span>Datum:</span> 15. Avgust</div>
+              <div><span>Vreme:</span> 19:00 - 20:30</div>
+              <div><span>Bina:</span> Glavna bina</div>
+            </div>
+            <a href="#" class="card-link">Više informacija</a>
+          </div>
+        </div>
+        
+        <div class="lineup-card">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Sonic Boom">
+          </div>
+          <div class="card-content">
+            <h3>milenjak Boom</h3>
+            <div class="card-details">
+              <div><span>Datum:</span> 16. Avgust</div>
+              <div><span>Vreme:</span> 22:00 - 00:00</div>
+              <div><span>Bina:</span> Glavna bina</div>
+            </div>
+            <a href="#" class="card-link">Više informacija</a>
+          </div>
+        </div>
+        
+        <div class="lineup-card">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Thunder Strike">
+          </div>
+          <div class="card-content">
+            <h3>mocili </h3>
+            <div class="card-details">
+              <div><span>Datum:</span> 16. Avgust</div>
+              <div><span>Vreme:</span> 20:00 - 21:30</div>
+              <div><span>Bina:</span> Glavna bina</div>
+            </div>
+            <a href="#" class="card-link">Više informacija</a>
+          </div>
+        </div>
+        
+        <div class="lineup-card">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Electric Soul">
+          </div>
+          <div class="card-content">
+            <h3>milos bozovic</h3>
+            <div class="card-details">
+              <div><span>Datum:</span> 17. Avgust</div>
+              <div><span>Vreme:</span> 21:00 - 23:00</div>
+              <div><span>Bina:</span> Glavna bina</div>
+            </div>
+            <a href="#" class="card-link">Više informacija</a>
+          </div>
+        </div>
+        
+        <div class="lineup-card">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1529354235303-cc42f23d767a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Rebel Saints">
+          </div>
+          <div class="card-content">
+            <h3>bogdan medojevic</h3>
+            <div class="card-details">
+              <div><span>Datum:</span> 17. Avgust</div>
+              <div><span>Vreme:</span> 19:00 - 20:30</div>
+              <div><span>Bina:</span> Glavna bina</div>
+            </div>
+            <a href="#" class="card-link">Više informacija</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section-footer">
+        <a href="#karte" class="btn-primary">KUPI KARTU</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Iskustva sekcija -->
+  <section class="section bg-secondary" id="iskustva">
+    <div class="container">
+      <div class="section-header">
+        <h2><span class="text-primary">ISKUSTVA</span> POSjETILACA</h2>
+        <p>Pročitajte što naši posjetioci kažu o RockStrikcija iskustvu</p>
+      </div>
+      
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <div class="testimonial-image">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Marko Petrović">
+            </div>
+            <div class="testimonial-author">
+              <h3>bojana stanic</h3>
+              <p>Posetilac 2023</p>
+            </div>
+          </div>
+          <p class="testimonial-text">"Najbolji festival na kojem sam bio! Energija, muzika, ljudi - sve je bilo savršeno. Jedva čekam sledeću godinu!"</p>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <div class="testimonial-image">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Ana Jovanović">
+            </div>
+            <div class="testimonial-author">
+              <h3>maja vujacic</h3>
+              <p>Posetilac 2023</p>
+            </div>
+          </div>
+          <p class="testimonial-text">"Atmosfera je bila nezaboravna. Svaki bend je dao sve od sebe, a organizacija je bila besprekorna. Definitivno dolazim i sledeće godine!"</p>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <div class="testimonial-image">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Stefan Nikolić">
+            </div>
+            <div class="testimonial-author">
+              <h3>tina jovitic</h3>
+              <p>Posetilac 2022</p>
+            </div>
+          </div>
+          <p class="testimonial-text">"Kao veliki fan rok muzike, ovo je bio san snova. Svi moji omiljeni bendovi na jednom mestu, neverovatna energija i sjajni ljudi."</p>
+        </div>
+      </div>
+      
+      <div class="section-footer">
+        <a href="#iskustva-forma" class="btn-primary">PODELI SVOJE ISKUSTVO</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galerija sekcija -->
+  <section class="section" id="galerija">
+    <div class="container">
+      <div class="section-header">
+        <h2><span class="text-primary">GALERIJA</span> FESTIVALA</h2>
+        <p>Pogledajte fotografije sa prethodnih izdanja RockStrikcija-a</p>
+      </div>
+      
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Koncert 1">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Koncert 2">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Koncert 3">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1521547418549-6a31aad7c177?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Koncert 4">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Koncert 5">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Koncert 6">
+        </div>
+      </div>
+    </div>
+    
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <span class="lightbox-close">&times;</span>
+      <img class="lightbox-content" id="lightbox-img">
+    </div>
+  </section>
+
+  <!-- O nama sekcija -->
+  <section class="section bg-primary-light" id="o-nama">
+    <div class="container">
+      <div class="section-header">
+        <h2><span class="text-primary">O</span> NAMA</h2>
+        <p>Saznajte više o RockStrikcija festivalu i našoj misiji</p>
+      </div>
+      
+      <div class="about-grid">
+        <div class="about-text">
+          <h3>ISTORIJA FESTIVALA</h3>
+          <p>
+            RockStrikcija je osnovan 2015. godine sa babababbaabbabababababbaababababababababab bababababbababa babbaba 
+          </p>
+          <p>
+            Naša misija je da pružimo nezaboravno iskustvo svim ljubiteljima rok muzike, okupljamo najbolje domaće i strane izvođače i stvaramo prostor gdje se muzika, umetnost i zajedništvo spajaju u savršenu celinu vrhunsku energiju.
+          </p>
+          <p>
+            Kroz godine, RockStrikcija je ugostio neke od najznačajnijih imena rok scene, postavljajući visoke standarde i konstantno unapređujući produkciju i organizaciju.
+          </p>
+        </div>
+        
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">10+</div>
+            <div class="stat-label">GODINA TRADICIJE</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">30+</div>
+            <div class="stat-label">IZVOĐAČA GODIŠNJE</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">50.000+</div>
+            <div class="stat-label">POSjETILACA</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">3</div>
+            <div class="stat-label">DANA NAJBOLJE MUZIKE</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="about-location">
+        <h3>LOKACIJA FESTIVALA</h3>
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2944.816331228304!2d19.24210757660549!3d42.43164423057532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x134deb185f000001%3A0xcc763e3317cc261c!2sZabjelo%20Stadium!5e0!3m2!1sen!2s!4v1741108118343!5m2!1sen!2s" 
+            width="100%" 
+            height="450" 
+            style="border: 2ps solid , blueviolet;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontakt sekcija -->
+  <section class="section" id="kontakt">
+    <div class="container">
+      <div class="section-header">
+        <h2><span class="text-primary">KONTAKTIRAJTE</span> NAS</h2>
+        <p>Imate pitanje ili želite da sarađujete sa nama? Pošaljite nam poruku!</p>
+      </div>
+      
+      <div class="contact-grid">
+        <div class="contact-form">
+          <h3>POŠALJITE NAM PORUKU</h3>
+          
+          <div id="form-status" class="form-status"></div>
+          
+          <form id="contact-form">
+            <div class="form-group">
+              <label for="name">Ime i prezime</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email adresa</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="subject">Tema</label>
+              <select id="subject" name="subject" required>
+                <option value="">Izaberite temu</option>
+                <option value="tickets">Karte</option>
+                <option value="partnership">Partnerstvo</option>
+                <option value="media">Mediji</option>
+                <option value="other">Ostalo</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Poruka</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn-primary">POŠALJI PORUKU</button>
+          </form>
+        </div>
+        
+        <div class="contact-info">
+          <h3>KONTAKT INFORMACIJE</h3>
+          
+          <div class="info-block">
+            <h4>Adresa:</h4>
+            <p>Bulevar Oslobođenja 56, 81000 Podgorica, Crna Gora</p>
+          </div>
+          
+          <div class="info-block">
+            <h4>Email:</h4>
+            <p>info@rockstrikcija.com</p>
+            <p>media@rockstrikcija.com</p>
+          </div>
+          
+          <div class="info-block">
+            <h4>Telefon:</h4>
+            <p>+382 20 12345678</p>
+          </div>
+          
+          <div class="info-block">
+            <h4>Pratite nas:</h4>
+            <div class="social-icons">
+              <a href="#" class="social-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.3,5.71a4.44,4.44,0,0,0-3.13-1.33H8.83A4.44,4.44,0,0,0,5.7,5.71,4.44,4.44,0,0,0,4.37,8.83v6.34A4.44,4.44,0,0,0,5.7,18.3a4.44,4.44,0,0,0,3.13,1.33h6.34A4.44,4.44,0,0,0,18.3,18.3a4.44,4.44,0,0,0,1.33-3.13V8.83A4.44,4.44,0,0,0,18.3,5.71ZM12,15.46a3.46,3.46,0,1,1,3.46-3.46A3.46,3.46,0,0,1,12,15.46Z"/>
+                </svg>
+              </a>
+              <a href="#" class="social-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M22,5.8a8.49,8.49,0,0,1-2.36.64,4.13,4.13,0,0,0,1.81-2.27,8.21,8.21,0,0,1-2.61,1,4.1,4.1,0,0,0-7,3.74A11.64,11.64,0,0,1,3.39,4.62a4.16,4.16,0,0,0-.55,2.07A4.09,4.09,0,0,0,4.66,10.1,4.05,4.05,0,0,1,2.8,9.59v.05a4.1,4.1,0,0,0,3.3,4A3.93,3.93,0,0,1,5,13.81a4.9,4.9,0,0,1-.77-.07,4.11,4.11,0,0,0,3.83,2.84A8.22,8.22,0,0,1,3,18.34a7.93,7.93,0,0,1-1-.06,11.57,11.57,0,0,0,6.29,1.85A11.59,11.59,0,0,0,20,8.45c0-.17,0-.35,0-.53A8.43,8.43,0,0,0,22,5.8Z"/>
+                </svg>
+              </a>
+              <a href="#" class="social-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12,2.04c-5.5,0-10,4.49-10,10.02,0,5,3.66,9.15,8.44,9.9v-7H7.9v-2.9h2.54V9.85c0-2.51,1.49-3.89,3.78-3.89,1.09,0,2.23.19,2.23.19v2.47H15.2c-1.24,0-1.63.77-1.63,1.56v1.88h2.78l-.45,2.9h-2.33v7a10,10,0,0,0,8.44-9.9C22,6.53,17.5,2.04,12,2.04Z"/>
+                </svg>
+              </a>
+            
+            </div>
+          </div>
+          
+          <div class="info-block">
+            <h4>Radno vreme za informacije:</h4>
+            <div class="working-hours">
+              <div><span>Ponedeljak - Petak</span><span>9:00 - 17:00</span></div>
+              <div><span>Subota</span><span>10:00 - 15:00</span></div>
+              <div><span>Nedelja</span><span>Zatvoreno</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-info">
+          <h3 class="footer-logo"><span class="text-primary">ROCK</span>STRIKCIJA</h3>
+          <p>
+            Najuzbudljiviji rok festival u regionu sa najboljim bendovima i nevjerovatnom atmosferom.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.3,5.71a4.44,4.44,0,0,0-3.13-1.33H8.83A4.44,4.44,0,0,0,5.7,5.71,4.44,4.44,0,0,0,4.37,8.83v6.34A4.44,4.44,0,0,0,5.7,18.3a4.44,4.44,0,0,0,3.13,1.33h6.34A4.44,4.44,0,0,0,18.3,18.3a4.44,4.44,0,0,0,1.33-3.13V8.83A4.44,4.44,0,0,0,18.3,5.71ZM12,15.46a3.46,3.46,0,1,1,3.46-3.46A3.46,3.46,0,0,1,12,15.46Z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22,5.8a8.49,8.49,0,0,1-2.36.64,4.13,4.13,0,0,0,1.81-2.27,8.21,8.21,0,0,1-2.61,1,4.1,4.1,0,0,0-7,3.74A11.64,11.64,0,0,1,3.39,4.62a4.16,4.16,0,0,0-.55,2.07A4.09,4.09,0,0,0,4.66,10.1,4.05,4.05,0,0,1,2.8,9.59v.05a4.1,4.1,0,0,0,3.3,4A3.93,3.93,0,0,1,5,13.81a4.9,4.9,0,0,1-.77-.07,4.11,4.11,0,0,0,3.83,2.84A8.22,8.22,0,0,1,3,18.34a7.93,7.93,0,0,1-1-.06,11.57,11.57,0,0,0,6.29,1.85A11.59,11.59,0,0,0,20,8.45c0-.17,0-.35,0-.53A8.43,8.43,0,0,0,22,5.8Z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12,2.04c-5.5,0-10,4.49-10,10.02,0,5,3.66,9.15,8.44,9.9v-7H7.9v-2.9h2.54V9.85c0-2.51,1.49-3.89,3.78-3.89,1.09,0,2.23.19,2.23.19v2.47H15.2c-1.24,0-1.63.77-1.63,1.56v1.88h2.78l-.45,2.9h-2.33v7a10,10,0,0,0,8.44-9.9C22,6.53,17.5,2.04,12,2.04Z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19.05,8.68c0-.18,0-.35,0-.53A8.43,8.43,0,0,0,21,5.8a8.49,8.49,0,0,1-2.36.64,4.13,4.13,0,0,0,1.81-2.27,8.21,8.21,0,0,1-2.61,1,4.1,4.1,0,0,0-7,3.74,11.64,11.64,0,0,1-8.45-4.29,4.16,4.16,0,0,0-.55,2.07A4.09,4.09,0,0,0,4.66,10.1,4.05,4.05,0,0,1,2.8,9.59v.05a4.1,4.1,0,0,0,3.3,4A3.93,3.93,0,0,1,5,13.81a4.9,4.9,0,0,1-.77-.07,4.11,4.11,0,0,0,3.83,2.84A8.22,8.22,0,0,1,3,18.34a7.93,7.93,0,0,1-1-.06,11.57,11.57,0,0,0,6.29,1.85A11.59,11.59,0,0,0,20,8.45C20,8.28,20,8.1,19.95,7.92a8.21,8.21,0,0,0,2-2.12,8.5,8.5,0,0,1-2.36.64,4.12,4.12,0,0,0,1.81-2.28"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-links">
+          <h4>BRZI LINKOVI</h4>
+          <ul>
+            <li><a href="#nastupi">Nastupi</a></li>
+            <li><a href="#iskustva">Iskustva</a></li>
+            <li><a href="#galerija">Galerija</a></li>
+            <li><a href="#o-nama">O nama</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h4>INFORMACIJE</h4>
+          <ul>
+            <li><a href="#">Kupovina karata</a></li>
+            <li><a href="#">Kako doći</a></li>
+            <li><a href="#">Smeštaj</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Pravila festivala</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-contact">
+          <h4>KONTAKT</h4>
+          <address>
+            <p>UL BOZI BB</p>
+            <p>81000 Podgorica, Crnagora</p>
+            <p>Email: info@rocsekcija.com</p>
+            <p>Telefon: +382 20 12345678</p>
+          </address>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; <span id="current-year"></span> crtptogorac.com. Sva prava zadržana.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Automatski postavi tekuću godinu u footer-u
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Navigacija - scroll efekt
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Mobilni meni
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    // Zatvaranje mobilnog menija pri kliku na link
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Detekcija aktivnog dela stranice tokom skrolovanja
+    window.addEventListener('scroll', function() {
+      const sections = ['nastupi', 'lineup', 'iskustva', 'galerija', 'o-nama', 'kontakt'];
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      let currentSection = 'nastupi';
+      
+      sections.forEach(section => {
+        const element = document.getElementById(section);
+        if (!element) return;
+        
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= 100 && rect.bottom >= 100) {
+          currentSection = section;
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSection}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Animacije na scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('appear');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.section-header, .lineup-grid, .testimonials-grid, .gallery-grid, .about-grid, .contact-grid')
+      .forEach(el => observer.observe(el));
+
+    // Galerija - lightbox funkcionalnost
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.querySelector('.lightbox-close');
+
+    galleryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const imgSrc = item.querySelector('img').getAttribute('src');
+        lightboxImg.setAttribute('src', imgSrc);
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    lightboxClose.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Forme
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Provera forme
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+        
+        if (!name || !email || !subject || !message) {
+          formStatus.textContent = 'Molimo popunite sva polja.';
+          formStatus.classList.add('error');
+          formStatus.classList.remove('success');
+          return;
+        }
+        
+        // Simulacija slanja forme
+        formStatus.textContent = 'Poruka je uspešno poslata! Odgovorićemo vam uskoro.';
+        formStatus.classList.add('success');
+        formStatus.classList.remove('error');
+        
+        // Reset forme
+        contactForm.reset();
+        
+        // Sakrij statusnu poruku nakon 5 sekundi
+        setTimeout(() => {
+          formStatus.style.display = 'none';
+        }, 5000);
+      });
+    }
+
+    // Smooth scrolling za "scroll down" indikator
+    document.querySelector('.scroll-indicator').addEventListener('click', function(e) {
+      e.preventDefault();
+      const lineupSection = document.getElementById('lineup');
+      window.scrollTo({
+        top: lineupSection.offsetTop - 80,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+</body>
+</html>
