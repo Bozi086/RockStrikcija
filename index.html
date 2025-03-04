@@ -2,7 +2,7 @@
 <html lang="sr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
   <title>RockStrikcija</title>
   <meta name="description" content="Najuzbudljiviji rok festival godine sa najboljim bendovima i neverovatnom atmosferom">
   <meta name="author" content="RockFest">
@@ -32,6 +32,7 @@
       --gray-900: #171717;
       --radius: 8px;
       --transition: all 0.3s ease;
+      --base-font-size: 16px; /* Osnovna veličina za rem */
     }
 
     /* Globalni reset */
@@ -44,8 +45,10 @@
     }
 
     html {
+      font-size: var(--base-font-size);
       scroll-behavior: smooth;
-      scroll-padding-top: 80px; /* Kompenzacija za fiksni navbar */
+      scroll-padding-top: 4rem; /* Prilagođeno za mobilne */
+      -webkit-text-size-adjust: 100%; /* Sprečava automatsko podešavanje fontova na iOS-u */
     }
 
     body {
@@ -54,6 +57,8 @@
       color: var(--foreground);
       background-color: var(--background);
       overflow-x: hidden;
+      -webkit-overflow-scrolling: touch; /* Glatko skrolovanje na mobilnim uređajima */
+      font-size: 1rem;
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -87,11 +92,11 @@
       width: 100%;
       max-width: 1280px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 1rem; /* Prilagođeno za mobilne */
     }
 
     .section {
-      padding: 80px 0;
+      padding: 5rem 0; /* Smanjeno za mobilne */
     }
 
     .bg-secondary {
@@ -109,7 +114,7 @@
       left: 0;
       width: 100%;
       z-index: 1000;
-      padding: 16px 0;
+      padding: 1rem 0;
       transition: var(--transition);
       background-color: transparent;
     }
@@ -125,24 +130,24 @@
       justify-content: space-between;
       max-width: 1280px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 1rem;
     }
 
     .logo {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 28px;
+      font-size: clamp(1.5rem, 5vw, 2rem);
       letter-spacing: 1px;
       color: var(--white);
     }
 
     .nav-links {
       display: flex;
-      gap: 32px;
+      gap: 2rem;
     }
 
     .nav-link {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 18px;
+      font-size: 1.125rem;
       text-transform: uppercase;
       color: var(--white);
       letter-spacing: 1px;
@@ -186,8 +191,8 @@
 
     /* ======= Hero Sekcija ======= */
     .hero {
-      height: 100vh;
-      min-height: 600px;
+      height: auto;
+      min-height: 80vh;
       position: relative;
       display: flex;
       align-items: center;
@@ -199,6 +204,7 @@
       background-repeat: no-repeat;
       text-align: center;
       overflow: hidden;
+      padding: 2rem 0;
     }
 
     .overlay {
@@ -215,19 +221,19 @@
       position: relative;
       z-index: 2;
       max-width: 800px;
-      padding: 0 20px;
+      padding: 0 1rem;
     }
 
     .hero h1 {
-      font-size: 5rem;
+      font-size: clamp(2rem, 10vw, 5rem);
       line-height: 1;
-      margin-bottom: 16px;
+      margin-bottom: 1rem;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
 
     .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 32px;
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      margin-bottom: 2rem;
       font-family: 'Oswald', sans-serif;
       max-width: 600px;
       margin-left: auto;
@@ -238,33 +244,33 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 16px;
-      margin-bottom: 32px;
+      gap: 1rem;
+      margin-bottom: 2rem;
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.5rem;
+      font-size: clamp(1rem, 4vw, 1.5rem);
     }
 
     .date-primary {
       background-color: var(--primary);
       color: var(--black);
-      padding: 4px 16px;
+      padding: 0.25rem 1rem;
     }
 
     .date-secondary {
       border: 2px solid var(--white);
-      padding: 4px 16px;
+      padding: 0.25rem 1rem;
     }
 
     .hero-buttons {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 16px;
+      gap: 1rem;
     }
 
     .scroll-indicator {
       position: absolute;
-      bottom: 40px;
+      bottom: 2rem;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -277,8 +283,8 @@
 
     .scroll-indicator span {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 14px;
-      margin-bottom: 8px;
+      font-size: clamp(0.875rem, 2vw, 1rem);
+      margin-bottom: 0.5rem;
     }
 
     @keyframes bounce {
@@ -286,17 +292,17 @@
         transform: translateY(0) translateX(-50%);
       }
       40% {
-        transform: translateY(-20px) translateX(-50%);
+        transform: translateY(-1.25rem) translateX(-50%);
       }
       60% {
-        transform: translateY(-10px) translateX(-50%);
+        transform: translateY(-0.625rem) translateX(-50%);
       }
     }
 
     /* Fade-in animacija */
     .fade-in {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(1.25rem);
       animation: fadeIn 1s forwards;
       animation-delay: 0.3s;
     }
@@ -323,9 +329,9 @@
     /* ======= Dugmad ======= */
     .btn-primary, .btn-secondary {
       display: inline-block;
-      padding: 12px 24px;
+      padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem);
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 18px;
+      font-size: clamp(1rem, 3vw, 1.2rem);
       letter-spacing: 1px;
       text-transform: uppercase;
       border: none;
@@ -340,7 +346,7 @@
     }
 
     .btn-primary:hover {
-      background-color: #e6c200; /* Tamnija varijanta primary boje */
+      background-color: #e6c200;
       transform: translateY(-2px);
     }
 
@@ -359,16 +365,16 @@
     /* ======= Sekcija zaglavlja ======= */
     .section-header {
       text-align: center;
-      margin-bottom: 60px;
+      margin-bottom: 3.75rem;
     }
 
     .section-header h2 {
-      font-size: 3rem;
-      margin-bottom: 16px;
+      font-size: clamp(2rem, 6vw, 3rem);
+      margin-bottom: 1rem;
     }
 
     .section-header p {
-      font-size: 1.1rem;
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
       max-width: 600px;
       margin: 0 auto;
       color: var(--gray-700);
@@ -376,14 +382,14 @@
 
     .section-footer {
       text-align: center;
-      margin-top: 60px;
+      margin-top: 3.75rem;
     }
 
     /* ======= Lineup Sekcija ======= */
     .lineup-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 32px;
+      grid-template-columns: repeat(auto-fill, minmax(clamp(250px, 45vw, 300px), 1fr));
+      gap: 2rem;
     }
 
     .lineup-card {
@@ -396,7 +402,7 @@
     }
 
     .lineup-card:hover {
-      transform: translateY(-8px);
+      transform: translateY(-0.5rem);
       box-shadow: 0 12px 16px rgba(0, 0, 0, 0.1);
       border-color: var(--primary);
     }
@@ -418,27 +424,27 @@
     }
 
     .card-content {
-      padding: 24px;
+      padding: 1.5rem;
     }
 
     .card-content h3 {
-      font-size: 1.8rem;
-      margin-bottom: 12px;
+      font-size: clamp(1.5rem, 4vw, 1.8rem);
+      margin-bottom: 0.75rem;
     }
 
     .card-details {
-      margin-bottom: 16px;
+      margin-bottom: 1rem;
       font-size: 0.9rem;
       color: var(--gray-700);
     }
 
     .card-details div {
-      margin-bottom: 4px;
+      margin-bottom: 0.25rem;
     }
 
     .card-details span {
       font-weight: 600;
-      margin-right: 4px;
+      margin-right: 0.25rem;
     }
 
     .card-link {
@@ -454,21 +460,21 @@
     /* ======= Iskustva (Testimonials) Sekcija ======= */
     .testimonials-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 32px;
+      grid-template-columns: repeat(auto-fill, minmax(clamp(250px, 45vw, 300px), 1fr));
+      gap: 2rem;
     }
 
     .testimonial-card {
       background-color: var(--white);
       border-radius: var(--radius);
-      padding: 24px;
+      padding: 1.5rem;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
     .testimonial-header {
       display: flex;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 1rem;
     }
 
     .testimonial-image {
@@ -476,7 +482,7 @@
       height: 60px;
       border-radius: 50%;
       overflow: hidden;
-      margin-right: 16px;
+      margin-right: 1rem;
     }
 
     .testimonial-image img {
@@ -486,13 +492,13 @@
     }
 
     .testimonial-author h3 {
-      font-size: 1.2rem;
-      margin-bottom: 4px;
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      margin-bottom: 0.25rem;
     }
 
     .testimonial-author p {
       font-size: 0.8rem;
-      color: var(--gray-600);
+      color: var(--gray-500);
     }
 
     .testimonial-text {
@@ -503,15 +509,15 @@
     /* ======= Galerija Sekcija ======= */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(clamp(200px, 45vw, 250px), 1fr));
+      gap: 1rem;
     }
 
     .gallery-item {
       border-radius: var(--radius);
       overflow: hidden;
       position: relative;
-      height: 200px;
+      height: clamp(150px, 40vw, 200px);
       cursor: pointer;
     }
 
@@ -554,7 +560,7 @@
       z-index: 2000;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 1rem;
     }
 
     .lightbox.active {
@@ -563,9 +569,9 @@
 
     .lightbox-close {
       position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 30px;
+      top: 1rem;
+      right: 1.5rem;
+      font-size: clamp(1.5rem, 5vw, 2rem);
       color: var(--white);
       cursor: pointer;
       z-index: 2001;
@@ -581,74 +587,74 @@
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      margin-bottom: 60px;
+      gap: 3rem;
+      margin-bottom: 3.75rem;
     }
 
     .about-text h3 {
-      font-size: 2rem;
-      margin-bottom: 24px;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      margin-bottom: 1.5rem;
     }
 
     .about-text p {
-      margin-bottom: 16px;
+      margin-bottom: 1rem;
     }
 
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
+      gap: 1.5rem;
     }
 
     .stat-card {
       background-color: var(--white);
       border-radius: var(--radius);
-      padding: 24px;
+      padding: 1.5rem;
       text-align: center;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
     .stat-number {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 3rem;
+      font-size: clamp(2rem, 6vw, 3rem);
       color: var(--primary);
-      margin-bottom: 8px;
+      margin-bottom: 0.5rem;
     }
 
     .stat-label {
-      font-size: 0.8rem;
+      font-size: clamp(0.75rem, 2vw, 0.9rem);
       font-weight: 600;
       text-transform: uppercase;
     }
 
     .about-location h3 {
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 4vw, 2rem);
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 1.5rem;
     }
 
     .map-container {
       border-radius: var(--radius);
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      height: 400px;
+      height: clamp(300px, 50vw, 400px);
     }
 
     /* ======= Kontakt Sekcija ======= */
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 48px;
+      gap: 3rem;
     }
 
     .contact-form h3, .contact-info h3 {
-      font-size: 2rem;
-      margin-bottom: 24px;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      margin-bottom: 1.5rem;
     }
 
     .form-status {
-      padding: 16px;
-      margin-bottom: 24px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
       border-radius: var(--radius);
       display: none;
     }
@@ -666,13 +672,13 @@
     }
 
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 1.25rem;
     }
 
     .form-group label {
       display: block;
-      margin-bottom: 8px;
-      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      font-size: clamp(0.875rem, 2vw, 0.9rem);
       font-weight: 500;
     }
 
@@ -680,11 +686,11 @@
     .form-group select,
     .form-group textarea {
       width: 100%;
-      padding: 12px;
+      padding: 0.75rem;
       border: 1px solid var(--gray-300);
       border-radius: var(--radius);
       font-family: 'Poppins', sans-serif;
-      font-size: 1rem;
+      font-size: clamp(0.875rem, 2vw, 1rem);
       background-color: var(--white);
       transition: var(--transition);
     }
@@ -698,17 +704,17 @@
     }
 
     .info-block {
-      margin-bottom: 24px;
+      margin-bottom: 1.5rem;
     }
 
     .info-block h4 {
-      font-size: 1.2rem;
-      margin-bottom: 8px;
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      margin-bottom: 0.5rem;
     }
 
     .social-icons {
       display: flex;
-      gap: 16px;
+      gap: 1rem;
     }
 
     .social-icon {
@@ -723,7 +729,7 @@
     .working-hours {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 0.5rem;
     }
 
     .working-hours div {
@@ -735,14 +741,14 @@
     .footer {
       background-color: var(--black);
       color: var(--white);
-      padding: 60px 0 20px;
+      padding: 3.75rem 0 1.25rem;
     }
 
     .footer-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 48px;
-      margin-bottom: 48px;
+      gap: 3rem;
+      margin-bottom: 3rem;
     }
 
     .footer-info {
@@ -750,18 +756,18 @@
     }
 
     .footer-logo {
-      font-size: 2rem;
-      margin-bottom: 16px;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      margin-bottom: 1rem;
     }
 
     .footer-info p {
       color: var(--gray-500);
-      margin-bottom: 16px;
+      margin-bottom: 1rem;
     }
 
     .footer-social {
       display: flex;
-      gap: 16px;
+      gap: 1rem;
     }
 
     .footer-social .social-icon {
@@ -773,14 +779,14 @@
     }
 
     .footer-links h4, .footer-contact h4 {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      margin-bottom: 1.25rem;
     }
 
     .footer-links ul {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 0.75rem;
     }
 
     .footer-links a {
@@ -799,19 +805,19 @@
 
     .footer-bottom {
       border-top: 1px solid var(--gray-900);
-      padding-top: 20px;
+      padding-top: 1.25rem;
       text-align: center;
     }
 
     .footer-bottom p {
       color: var(--gray-500);
-      font-size: 0.9rem;
+      font-size: clamp(0.875rem, 2vw, 0.9rem);
     }
 
     /* Animacije za sekcije */
     .section-appear {
       opacity: 0;
-      transform: translateY(40px);
+      transform: translateY(2.5rem);
       transition: opacity 1s ease, transform 1s ease;
     }
 
@@ -823,13 +829,13 @@
     /* ======= Responzivnost ======= */
     @media (max-width: 1024px) {
       .hero h1 {
-        font-size: 4rem;
+        font-size: clamp(2.5rem, 8vw, 4rem);
       }
       
       .about-grid,
       .contact-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 2.5rem;
       }
       
       .footer-grid {
@@ -838,14 +844,8 @@
     }
 
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 3.5rem;
-      }
-      
-      .about-grid,
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
+      .navbar {
+        padding: 0.75rem 0;
       }
       
       .nav-links {
@@ -873,38 +873,62 @@
         flex-direction: column;
         position: fixed;
         left: 0;
-        top: 70px;
+        top: 4rem;
         width: 100%;
         background-color: rgba(0, 0, 0, 0.9);
-        padding: 20px;
+        padding: 1rem;
         z-index: 999;
         text-align: center;
       }
       
+      .hero {
+        min-height: 60vh;
+      }
+      
+      .hero h1 {
+        font-size: clamp(2rem, 6vw, 3.5rem);
+      }
+      
+      .about-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
       .section-header h2 {
-        font-size: 2.5rem;
+        font-size: clamp(1.75rem, 5vw, 2.5rem);
       }
     }
 
     @media (max-width: 576px) {
+      html {
+        font-size: 14px;
+      }
+      
       .hero h1 {
-        font-size: 3rem;
+        line-height: 1.2;
       }
       
       .hero p {
-        font-size: 1rem;
+        font-size: clamp(0.875rem, 2.5vw, 1rem);
       }
       
       .hero-buttons {
         flex-direction: column;
+        gap: 0.75rem;
       }
       
       .section {
-        padding: 60px 0;
+        padding: 3rem 0;
       }
       
       .section-header h2 {
-        font-size: 2rem;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+      }
+      
+      .lineup-card, .testimonial-card {
+        margin: 0 auto;
+        max-width: 90%;
       }
       
       .stats-grid {
@@ -967,7 +991,7 @@
     <div class="container">
       <div class="section-header">
         <h2><span class="text-primary">LINEUP</span> 2025godine</h2>
-        <p>Pogledajte raspored nastupa najvećih rok zvijezda na  ROCK-STRIKCIJA festu 2025</p>
+        <p>Pogledajte raspored nastupa najvećih rok zvijezda na ROCK-STRIKCIJA festu 2025</p>
       </div>
       
       <div class="lineup-grid">
@@ -991,7 +1015,7 @@
             <img src="https://images.unsplash.com/photo-1471478331149-c72f17e33c73?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Metal Fury">
           </div>
           <div class="card-content">
-            <h3>cuca  Fury</h3>
+            <h3>cuca Fury</h3>
             <div class="card-details">
               <div><span>Datum:</span> 15. Avgust</div>
               <div><span>Vreme:</span> 19:00 - 20:30</div>
@@ -1021,7 +1045,7 @@
             <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Thunder Strike">
           </div>
           <div class="card-content">
-            <h3>mocili </h3>
+            <h3>mocili</h3>
             <div class="card-details">
               <div><span>Datum:</span> 16. Avgust</div>
               <div><span>Vreme:</span> 20:00 - 21:30</div>
@@ -1155,7 +1179,7 @@
     
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
-      <span class="lightbox-close">&times;</span>
+      <span class="lightbox-close">×</span>
       <img class="lightbox-content" id="lightbox-img">
     </div>
   </section>
@@ -1207,8 +1231,8 @@
         <div class="map-container">
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2944.816331228304!2d19.24210757660549!3d42.43164423057532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x134deb185f000001%3A0xcc763e3317cc261c!2sZabjelo%20Stadium!5e0!3m2!1sen!2s!4v1741108118343!5m2!1sen!2s" 
             width="100%" 
-            height="450" 
-            style="border: 4px solid , red;" 
+            height="100%" 
+            style="border: 4px solid red;" 
             allowfullscreen="" 
             loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade">
@@ -1300,7 +1324,6 @@
                   <path d="M12,2.04c-5.5,0-10,4.49-10,10.02,0,5,3.66,9.15,8.44,9.9v-7H7.9v-2.9h2.54V9.85c0-2.51,1.49-3.89,3.78-3.89,1.09,0,2.23.19,2.23.19v2.47H15.2c-1.24,0-1.63.77-1.63,1.56v1.88h2.78l-.45,2.9h-2.33v7a10,10,0,0,0,8.44-9.9C22,6.53,17.5,2.04,12,2.04Z"/>
                 </svg>
               </a>
-            
             </div>
           </div>
           
@@ -1376,7 +1399,7 @@
           <h4>KONTAKT</h4>
           <address>
             <p>UL BOZI BB</p>
-            <p>81000 Podgorica, Crnagora</p>
+            <p>81000 Podgorica, Crna Gora</p>
             <p>Email: info@rocsekcija.com</p>
             <p>Telefon: +382 20 12345678</p>
           </address>
@@ -1384,7 +1407,7 @@
       </div>
       
       <div class="footer-bottom">
-        <p>&copy; <span id="current-year"></span> crtptogorac.com. Sva prava zadržana.</p>
+        <p>© <span id="current-year"></span> cryptogorac.com. Sva prava zadržana.</p>
       </div>
     </div>
   </footer>
@@ -1397,11 +1420,7 @@
     // Navigacija - scroll efekt
     window.addEventListener('scroll', function() {
       const navbar = document.getElementById('navbar');
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
     });
 
     // Mobilni meni
@@ -1420,6 +1439,17 @@
         navLinks.classList.remove('active');
       });
     });
+
+    // Zatvaranje menija na skrolovanje ili resize
+    window.addEventListener('scroll', closeMobileMenu);
+    window.addEventListener('resize', closeMobileMenu);
+
+    function closeMobileMenu() {
+      if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      }
+    }
 
     // Detekcija aktivnog dela stranice tokom skrolovanja
     window.addEventListener('scroll', function() {
@@ -1525,10 +1555,7 @@
     document.querySelector('.scroll-indicator').addEventListener('click', function(e) {
       e.preventDefault();
       const lineupSection = document.getElementById('lineup');
-      window.scrollTo({
-        top: lineupSection.offsetTop - 80,
-        behavior: 'smooth'
-      });
+      lineupSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   </script>
 </body>
